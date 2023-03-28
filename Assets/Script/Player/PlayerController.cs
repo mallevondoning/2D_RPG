@@ -6,7 +6,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private Transform art;
-
+    [SerializeField]
+    private Transform muzzle;
+    [SerializeField]
+    private Bullet bullet;
+    [SerializeField]
+    private BulletTeam team = BulletTeam.player;
 
     [Header("------------UX------------")]
     [SerializeField]
@@ -15,14 +20,15 @@ public class PlayerController : MonoBehaviour
     private float jumpForce = 5f;
     [SerializeField]
     private float timeToMaxJump = 0.5f;
+    [SerializeField]
+    private float health = 100f;
 
     private Rigidbody2D body;
     private Locomotion locomotion;
 
     private Vector3 normalArt;
     private Vector3 currentArt;
-
-    private float health;
+    private float normalArtX;
 
     private bool justShot = false;
 
@@ -32,6 +38,7 @@ public class PlayerController : MonoBehaviour
         locomotion = new Locomotion();
 
         normalArt = currentArt = art.localScale;
+        normalArtX = art.localScale.x;
     }
 
     private void Update()
@@ -49,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         body.velocity = locomotion.Move(body, speed);
+
         Shoot();
     }
 
@@ -58,19 +66,32 @@ public class PlayerController : MonoBehaviour
         {
             if (!justShot)
             {
-                Debug.Log("Shot");
-
                 justShot = true;
+
+                Vector3 dir = Vector3.right * art.localScale.x / normalArtX;
+                Debug.Log(art.localScale.x / normalArtX);
+
+                Bullet spawnedBullet = Instantiate(bullet);
+                spawnedBullet.InitBullet(muzzle.transform.position, team, dir, 0f, false);
             }
         }
         if (Input.GetAxis("Shoot") == 0)
             justShot = false;
     }
 
-    /*
-    private void OnDrawGizmos()
+    public bool IsDead()
     {
-        Gizmos.DrawCube(transform.position, new Vector3(1,1,0));
+        return health <= 0;
     }
-    */
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Bullet bulletCheck = collision.gameObject.GetComponent<Bullet>();
+
+        if (bulletCheck != null && bulletCheck.team != team)
+        {
+            Destroy(bulletCheck.gameObject);
+            health -= 10f;
+        }
+    }
 }
