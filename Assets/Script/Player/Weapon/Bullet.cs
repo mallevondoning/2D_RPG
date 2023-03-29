@@ -9,6 +9,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    private Rigidbody2D body;
+    private Collider2D collision; 
+
     private float currentAliveTime = 0;
 
     public BulletTeam team { get; set; }
@@ -16,7 +19,12 @@ public class Bullet : MonoBehaviour
     private float gravityMultiplier;
     private bool collideWithWall;
 
-    public void InitBullet(Vector3 start, BulletTeam team, Vector3 direction, float gravityMultiplier, bool collideWithWall)
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    public void InitBullet(Vector2 start, BulletTeam team, Vector2 direction, float gravityMultiplier, bool collideWithWall)
     {
         transform.position = start;
         this.team = team;
@@ -34,6 +42,9 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        transform.position += direction * speed * Time.deltaTime;
+        collision.isTrigger = collideWithWall;
+
+        body.gravityScale = gravityMultiplier;
+        body.velocity = direction * speed;
     }
 }

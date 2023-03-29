@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
             {
                 justShot = true;
 
-                Vector3 dir = Vector3.right * art.localScale.x / normalArtX;
+                Vector2 dir = Vector2.right * art.localScale.x / normalArtX;
                 Debug.Log(art.localScale.x / normalArtX);
 
                 Bullet spawnedBullet = Instantiate(bullet);

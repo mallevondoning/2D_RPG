@@ -3311,10 +3311,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8288654448662983910, guid: 51dea3cffc3fc8347ad9d6a9f6793977, type: 3}
-      propertyPath: m_Constraints
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8288654448662983911, guid: 51dea3cffc3fc8347ad9d6a9f6793977, type: 3}
       propertyPath: m_Name
       value: GroundEnemy

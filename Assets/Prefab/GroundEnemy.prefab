@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 8288654448662983907}
   - component: {fileID: 8288654448662983910}
   - component: {fileID: 8288654448662983905}
+  - component: {fileID: 6500593327859980790}
   m_Layer: 0
   m_Name: GroundEnemy
   m_TagString: Untagged
@@ -489,7 +490,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!58 &8288654448662983905
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -506,3 +507,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6500593327859980790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8288654448662983911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12fb781fcfa42464c9eda54229f2d8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 2
+  health: 50

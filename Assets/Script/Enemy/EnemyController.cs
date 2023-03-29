@@ -4,15 +4,32 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private BulletTeam team = BulletTeam.enemy;
+    [SerializeField]
+    private float health = 50f;
+
+    private void Update()
     {
-        
+        if (IsDead())
+        {
+            Destroy(gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool IsDead()
     {
-        
+        return health <= 0;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Bullet bulletCheck = collision.gameObject.GetComponent<Bullet>();
+
+        if (bulletCheck != null && bulletCheck.team != team)
+        {
+            Destroy(bulletCheck.gameObject);
+            health -= 10f;
+        }
     }
 }
