@@ -23,7 +23,7 @@ public class Locomotion
     {
         int mask = LayerMask.GetMask("Ground");
         Vector2 center = Vector2.one * origin.GetComponent<BoxCollider2D>().size.x / 2;
-        grounded = Physics2D.BoxCast(origin.transform.position, center, 360f, Vector2.down, 0.5f, mask);
+        grounded = Physics2D.BoxCast(origin.transform.position, center, 360f, Vector2.down, 0.3f, mask);
 
         if (Input.GetAxis("Jump") > 0)
         {

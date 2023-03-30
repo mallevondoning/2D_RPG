@@ -5,12 +5,15 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
+    private Rigidbody2D body;
+    [SerializeField]
+    private Collider2D collision;
+
+    [Header("------------UX------------")]
+    [SerializeField]
     private float bulletAliveTime;
     [SerializeField]
     private float speed;
-
-    private Rigidbody2D body;
-    private Collider2D collision; 
 
     private float currentAliveTime = 0;
 
@@ -18,11 +21,6 @@ public class Bullet : MonoBehaviour
     private Vector3 direction;
     private float gravityMultiplier;
     private bool collideWithWall;
-
-    private void Awake()
-    {
-        body = GetComponent<Rigidbody2D>();
-    }
 
     public void InitBullet(Vector2 start, BulletTeam team, Vector2 direction, float gravityMultiplier, bool collideWithWall)
     {
@@ -42,9 +40,13 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        collision.isTrigger = collideWithWall;
+        collision.isTrigger = !collideWithWall;
 
-        body.gravityScale = gravityMultiplier;
         body.velocity = direction * speed;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }
