@@ -9,7 +9,7 @@ public class DebugWalkPos : MonoBehaviour
         Gizmos.color = Color.yellow;
         foreach (Transform item in transform)
         {
-            Gizmos.DrawWireSphere(item.position, 0.2f);
+            Gizmos.DrawWireSphere(item.position, 0.5f);
         }
     }
 }

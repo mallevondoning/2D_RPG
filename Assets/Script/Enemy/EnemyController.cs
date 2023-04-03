@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class EnemyController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour
     public enum EnemyBehavior
     {
         NoneID = 0,
-        Still = 1,
+        Idle = 1,
         Walking = 2,
         Follow = 3,
     }
@@ -52,8 +53,8 @@ public class EnemyController : MonoBehaviour
     {
         switch (behaviorType)
         {
-            case EnemyBehavior.Still:
-                behavior = new SillBehavior();
+            case EnemyBehavior.Idle:
+                behavior = new IdleBehavior();
                 break;
             case EnemyBehavior.Walking:
                 behavior = new WalkingBehavior();
@@ -64,6 +65,7 @@ public class EnemyController : MonoBehaviour
                 break;
             default:
                 Debug.LogWarning(transform.name + " behavior is " + behaviorType + ", and this behvior does not exsist on " + transform.name);
+                behavior = null;
                 break;
         }
 
@@ -72,6 +74,8 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
+        Assert.IsNotNull(behavior, "Behavior is never set");
+
         body = hitbox.GetComponent<Rigidbody2D>();
 
         normalArt = currentArt = art.localScale;
@@ -102,5 +106,4 @@ public class EnemyController : MonoBehaviour
     {
         return health <= 0;
     }
-
 }

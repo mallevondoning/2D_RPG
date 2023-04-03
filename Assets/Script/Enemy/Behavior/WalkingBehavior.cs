@@ -59,4 +59,9 @@ public class WalkingBehavior : IEnemyBehavior
             body.velocity = new Vector2(dir.x * speed, body.velocity.y);
         }
     }
+    
+    public void Jump()
+    {
+
+    }
 }

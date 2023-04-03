@@ -1,1 +1,9 @@
+player:
+
+jump: 
 after jumping, holding the jump will result of a slow fall
+update jump so you get air when you tap jump
+
+Enemy:
+walkBehavior:
+add jump if needed
