@@ -44,7 +44,7 @@ public class Locomotion
 
         float finalJumpForce = normJump * jumpForce;
 
-        if (Input.GetAxis("Jump") > 0 && timeJumpHeld < maxJump)
+        if (Input.GetAxis("Jump") > 0 && !stoppedJumping && timeJumpHeld < maxJump)
             return new Vector2(body.velocity.x, finalJumpForce);
         else    
             return new Vector2(body.velocity.x, body.velocity.y);
