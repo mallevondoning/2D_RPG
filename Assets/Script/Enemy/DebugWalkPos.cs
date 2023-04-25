@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class DebugWalkPos : MonoBehaviour
 {
+    [SerializeField] private Collider2D enemyCollider;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
+
+        var circle = enemyCollider as CircleCollider2D;
         foreach (Transform item in transform)
         {
-            Gizmos.DrawWireSphere(item.position, 0.5f);
+            Gizmos.DrawWireSphere(item.position, circle.radius);
         }
     }
 }

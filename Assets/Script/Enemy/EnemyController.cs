@@ -26,10 +26,9 @@ public class EnemyController : MonoBehaviour
     }
 
     public BulletTeam team = BulletTeam.enemy;
-    [SerializeField]
-    private GameObject hitbox;
-    [SerializeField]
-    private Transform art;
+    [SerializeField] private Rigidbody2D body;
+    [SerializeField] private GameObject hitbox;
+    [SerializeField] private Transform art;
 
     [Header("------------Enemy behavior------------")]
     public EnemyType enemyType;
@@ -38,19 +37,30 @@ public class EnemyController : MonoBehaviour
 
     [Header("------------UX------------")]
     public float health;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private int expHeld;
+    [SerializeField] private float speed;
+    [SerializeField] private int expHeld;
 
     private IEnemyBehavior behavior;
-    private Rigidbody2D body;
 
     private Vector3 normalArt;
     private Vector3 currentArt;
 
     private void OnValidate()
     {
+        switch (environmentType)
+        {
+            case EnemyEnvironment.Grounded:
+                body.gravityScale = 1;
+                break;
+            case EnemyEnvironment.Flying:
+                body.gravityScale = 0;
+                break;
+            default:
+                Debug.LogWarning(transform.name + " environment type is " + environmentType + ". Then adding gravity");
+                body.gravityScale = 1;
+                break;
+        }
+
         switch (behaviorType)
         {
             case EnemyBehavior.Idle:

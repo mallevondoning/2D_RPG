@@ -12,8 +12,5 @@ public class IdleBehavior : IEnemyBehavior
         idleArt = artTransform.localScale;
     }
 
-    public void Locomotion(Transform transform, Rigidbody2D body, float speed)
-    {
-        throw new System.NotImplementedException();
-    }
+    public void Locomotion(Transform transform, Rigidbody2D body, float speed) { }
 }

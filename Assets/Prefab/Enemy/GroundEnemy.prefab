@@ -359,8 +359,9 @@ GameObject:
   - component: {fileID: 4387089748605550449}
   - component: {fileID: 169186798572719193}
   - component: {fileID: 1924865953543605852}
+  - component: {fileID: 1461245944}
   m_Layer: 0
-  m_Name: HitBox
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7818719831111265990}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.34, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -402,7 +403,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &1924865953543605852
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -419,6 +420,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1461245944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818719831111265990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4f38905b90f6a4aa6e182c892e64ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 6500593327859980790}
 --- !u!1 &8288654447646264150
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,13 +566,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fb781fcfa42464c9eda54229f2d8da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitbox: {fileID: 7818719831111265990}
   team: 2
-  enemyType: 0
-  environmentType: 0
+  body: {fileID: 169186798572719193}
+  hitbox: {fileID: 7818719831111265990}
+  art: {fileID: 8288654447646264145}
+  enemyType: 1
+  environmentType: 1
   behaviorType: 2
-  speed: 2
   health: 50
+  speed: 2
   expHeld: 5
 --- !u!1001 &549139897042185654
 PrefabInstance:
@@ -569,11 +585,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4232888801586426215, guid: 0451a10f71f938049900fdb4a31e439c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.92
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7350004734138200435, guid: 0451a10f71f938049900fdb4a31e439c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.61
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8771518534446350852, guid: 0451a10f71f938049900fdb4a31e439c, type: 3}
       propertyPath: m_RootOrder
