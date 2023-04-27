@@ -706,7 +706,7 @@ MonoBehaviour:
   behaviorType: 2
   health: 50
   speed: 2
-  expHeld: 5
+  expHeld: 8
 --- !u!114 &3915315969392132362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
   firePoint: {fileID: 5889953316019426914}
   bullet: {fileID: 4950386089554734754, guid: a54daece422f2e9448763d128b53b311, type: 3}
   art: {fileID: 8288654447646264145}
-  maxTimer: 1
+  maxTimer: 0.75
 --- !u!1 &8738953875032631809
 GameObject:
   m_ObjectHideFlags: 0
