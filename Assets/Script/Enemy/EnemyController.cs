@@ -5,12 +5,6 @@ using UnityEngine.Assertions;
 
 public class EnemyController : MonoBehaviour
 {
-    public enum EnemyType
-    {
-        NoneID = 0,
-        Melee = 1,
-        Raged = 2,
-    }
     public enum EnemyEnvironment
     {
         NoneID = 0,
@@ -31,7 +25,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Transform art;
 
     [Header("------------Enemy behavior------------")]
-    public EnemyType enemyType;
     public EnemyEnvironment environmentType;
     public EnemyBehavior behaviorType;
 
@@ -41,6 +34,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private int expHeld;
 
     private IEnemyBehavior behavior;
+    private Gun gun;
 
     private Vector3 normalArt;
     private Vector3 currentArt;
@@ -89,6 +83,8 @@ public class EnemyController : MonoBehaviour
         body = hitbox.GetComponent<Rigidbody2D>();
 
         normalArt = currentArt = art.localScale;
+
+        TryGetComponent<Gun>(out gun);
     }
 
     private void Update()
@@ -105,11 +101,19 @@ public class EnemyController : MonoBehaviour
             art.localScale = currentArt = new Vector3(-normalArt.x, normalArt.y, normalArt.z);
         else
             art.localScale = currentArt;
+
+        Shoot();
     }
 
     private void FixedUpdate()
     {
         behavior.Locomotion(hitbox.transform, body, speed);
+    }
+
+    private void Shoot()
+    {
+        if (gun == null) return;
+        gun.Shoot();
     }
 
     private bool IsDead()

@@ -570,7 +570,6 @@ MonoBehaviour:
   body: {fileID: 169186798572719193}
   hitbox: {fileID: 7818719831111265990}
   art: {fileID: 8288654447646264145}
-  enemyType: 1
   environmentType: 1
   behaviorType: 2
   health: 50
