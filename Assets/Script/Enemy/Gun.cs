@@ -21,7 +21,9 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if (currentTime >= maxTimer)
+        currentTime = TimeUtil.UpdateTimer(currentTime);
+
+        if (TimeUtil.IsTimerDone(currentTime, maxTimer))
         {
             currentTime = 0;
 
@@ -30,7 +32,5 @@ public class Gun : MonoBehaviour
             Bullet spawnedBullet = Instantiate(bullet);
             spawnedBullet.InitBullet(firePoint.position, BulletTeam.enemy, dir, 0, false);
         }
-
-        currentTime += Time.deltaTime;
     }
 }

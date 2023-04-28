@@ -33,9 +33,9 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        currentAliveTime += Time.deltaTime;
+        currentAliveTime = TimeUtil.UpdateTimer(currentAliveTime);
 
-        if (currentAliveTime >= bulletAliveTime)
+        if (TimeUtil.IsTimerDone(currentAliveTime, bulletAliveTime))
         {
             Destroy(gameObject);
         }
