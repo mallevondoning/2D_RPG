@@ -28,6 +28,10 @@ public class EnemyController : MonoBehaviour
     public EnemyEnvironment environmentType;
     public EnemyBehavior behaviorType;
 
+    [Header("If behavior is idle")]
+    [SerializeField] private bool canTurn;
+    [SerializeField] private float turnTimer;
+
     [Header("------------UX------------")]
     public float health;
     [SerializeField] private float speed;
@@ -59,6 +63,8 @@ public class EnemyController : MonoBehaviour
         {
             case EnemyBehavior.Idle:
                 behavior = new IdleBehavior();
+                var tempBehavior = behavior as IdleBehavior;
+                tempBehavior.SetTurning(canTurn, turnTimer);
                 break;
             case EnemyBehavior.Walking:
                 behavior = new WalkingBehavior();

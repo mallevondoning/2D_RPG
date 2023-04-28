@@ -704,6 +704,8 @@ MonoBehaviour:
   art: {fileID: 8288654447646264145}
   environmentType: 1
   behaviorType: 2
+  canTurn: 0
+  turnTimer: 0
   health: 50
   speed: 2
   expHeld: 8
